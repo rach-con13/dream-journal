@@ -20,7 +20,7 @@ export const CodeElement = props => {
 
  export const Leaf = props => {
    
-  console.log(props);
+  
     let fontStyles = (leaf) => {
       switch(leaf) {
         case leaf.bold:

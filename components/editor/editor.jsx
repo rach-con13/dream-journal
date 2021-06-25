@@ -1,9 +1,10 @@
 import next from 'next';
-import React, { useCallback, useMemo, useState } from 'react'
-import {createEditor,Editor, Transforms,Text} from "slate";
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import {createEditor,Editor, Transforms,Text,Value,Selection,Range} from "slate";
 import {Slate,Editable,withReact} from "slate-react";
 import EditorToolbar from "./editorToolbar";
-import { CodeElement,QuoteElement,DefaultElement, Leaf } from './elementBlocks';
+import {Leaf} from "../../editor/Marks/Leaf";
+import { CodeElement,QuoteElement,DefaultElement } from './elementBlocks';
 
 
 export default function EditorSection(props) {
@@ -15,6 +16,10 @@ export default function EditorSection(props) {
         children: [{ text: 'A line of text in a paragraph.' }],
       },
     ])
+    useEffect(() => {
+        
+        console.log(Selection);
+    }, [Selection])
 
    const renderElement = useCallback(props => {
 
@@ -35,7 +40,11 @@ export default function EditorSection(props) {
           
             <Slate  editor={editor}
             value={value} 
-            onChange={newValue => setValue(newValue)}>
+      
+            onChange={(newValue) => {
+                setValue(newValue);
+         
+            }}>
               
                 <EditorToolbar editor={editor} /> 
                 <div className="mt-8 mx-auto w-10/12 ">
