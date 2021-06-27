@@ -11,6 +11,6 @@ var entry = new Schema({
     }
   });
 
-  let Entry = mongoose.models.entry || mongoose.model('Entry',entry);
+  let Entry = mongoose.models.Entry || mongoose.model('Entry',entry);
   export default Entry;
 

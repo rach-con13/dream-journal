@@ -4,8 +4,9 @@ export default function Sidebar(props) {
     
 
     return (
-       <div className="col-span-3 bg-blue-900">
-           <header className="border-b  border-blue-700 border-solid">
+       <div className="col-span-3 bg-primary-light">
+       
+            <header className="border-b  border-blue-700 border-solid">
                <div className="mx-auto w-10/12 py-3">
                    <p className="text-lg text-gray-200 font-bold ">Dreamer</p>
                </div>
@@ -16,7 +17,7 @@ export default function Sidebar(props) {
                     <SidebarEntry />
                     <SidebarEntry />
                </div>
-           </div>
+           </div> 
        </div>
     )
 }
