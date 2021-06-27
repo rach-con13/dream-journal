@@ -7,19 +7,24 @@ export default function Home() {
     <div className="p-0 m-0 box-border">
       <Head>
         <title>Create Next App</title>
+  
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
+        
+        
       </Head>
-     
-      <div style={{display:'grid',gridTemplateColumns:'4rem 1fr'}}>
+      <div style={{display:'grid',gridTemplateColumns:'auto 1fr',fontFamily:"Work Sans"}}>
         <SettingBar />
-       <div  className=" main grid grid-cols-12 h-screen w-full p-0">
-     
+      <div  className=" main grid grid-cols-12 h-screen w-full p-0">
         <Sidebar />
-        <div className="col-span-9 bg-gray-100">
+        <div className="col-span-9 bg-primary-light">
+          
          <EditorSection /> 
         </div>
-        </div>
+      
       </div> 
+      </div>
         
     </div>
   )
