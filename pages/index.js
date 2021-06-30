@@ -18,7 +18,7 @@ export default function Home() {
         <SettingBar />
       <div  className=" main grid grid-cols-12 h-screen w-full p-0">
         <Sidebar />
-        <div className="col-span-9 bg-primary-light">
+        <div className="col-span-9 bg-light">
           
          <EditorSection /> 
         </div>

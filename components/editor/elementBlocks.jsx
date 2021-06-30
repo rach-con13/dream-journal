@@ -17,32 +17,3 @@ export const CodeElement = props => {
     return <p {...props.attributes}>{props.children}</p>
   }
 
-
- export const Leaf = props => {
-   
-  
-    let fontStyles = (leaf) => {
-      switch(leaf) {
-        case leaf.bold:
-          return {fontWeight:"bold"}
-          break;
-        case leaf.italic:
-          return {fontStyle:'italic'}
-          break;
-        default:
-          return;
-      }
-    }
-
-    // text highlighting
-
-    return (
-      <span 
-        {...props.attributes}
-        style={{ fontWeight: props.leaf.bold ? 'bold' : 'normal',
-      fontStyle: props.leaf.italic ? 'italic' : 'normal' }}
-      >
-        {props.children}
-      </span>
-    )
-  }

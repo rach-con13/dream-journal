@@ -8,11 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.20",
     "apollo-server-micro": "^2.25.1",
+    "formik": "^2.2.9",
     "graphql": "^15.5.1",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.15",
     "next": "latest",
+    "next-auth": "^3.27.1",
     "next-connect": "^0.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,7 +24,8 @@
     "react-mde": "^11.5.0",
     "showdown": "^1.9.1",
     "slate": "^0.63.0",
-    "slate-react": "^0.65.2"
+    "slate-react": "^0.65.2",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.4",

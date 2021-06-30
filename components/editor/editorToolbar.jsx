@@ -1,40 +1,26 @@
 import React from 'react';
 import { Editor } from 'slate';
-import { isBoldMarkActive, testMark, toggleBoldMark } from './editorFunctions';
-import toolbar from "../../editor/index";
-import {renderMark} from "../../editor/Marks/index";
 
-
-
+import MarkButton from "../../lib/slate/slateButtons/markButton";
+import BlockButton from "../../lib/slate/slateButtons/blockButton";
+import {BsCode} from 'react-icons/bs';
+import {FaBold,FaItalic,FaStrikethrough,FaUnderline,FaQuoteRight} from "react-icons/fa";
 export default function EditorToolbar(props) {
   
     
 
     return (
-        <div className="bg-white font-semibold w-full py-5 shadow-sm px-4 text-gray-800 mb-3">
+        <div className="font-semibold w-full py-5 shadow-sm px-4 text-dark mb-3">
             <div className="flex items-center ">
                 <p className="text-lg font-semibold">My First Entry </p>
-                <div  className="flex-1  flex ml-8">
+                <div  className="flex-1  flex ml-8 align-center">
                        
-                      {toolbar.map((section,index) => {
-                          return (
-                           <div  className="flex first:border-none  border-l-2 px-4 border-solid border-gray-400 items-center ">
-                           {section.tools.map((tool,index) => {
-                            
-                            return (
-                                <button onMouseDown={(e) => {
-                                    e.preventDefault();
-                                    renderMark(props.editor,tool.name);
-                                }} key={index} className="text-lg first:px-0 pl-3 font-semibold">
-                                   {tool.icon}
-                                </button>
-                            )
-                           })}
-                           </div>
-                          )
-
-                      })}
-
+                       <MarkButton editor={props.editor} format='bold' icon={<FaBold />} />
+                       <MarkButton editor={props.editor} format='italic' icon={<FaItalic />} />
+                       <MarkButton editor={props.editor} format='underline' icon={<FaUnderline />} />
+                       <MarkButton editor={props.editor} format='strikethrough' icon={<FaStrikethrough />} />
+                       <BlockButton editor={props.editor} format='code' icon={<BsCode />} />
+                       <BlockButton editor={props.editor} format='quote' icon={<FaQuoteRight />} />
            
                 </div>
             </div>
