@@ -1,12 +1,10 @@
 .inputFieldContainer {
-  @apply rounded-sm  text-left  text-extradark  grid grid-cols-12 overflow-hidden;
+  @apply text-left py-2 text-extradark  flex items-center  border-b  border-solid;
 }
-.inputFieldContainer:not(:first-child) {
-  @apply mt-2;
-}
+
 .inputLabel {
-  @apply col-span-4 font-semibold text-sm bg text-extradark py-3 px-4;
+  @apply font-semibold text-sm  text  px-4;
 }
 .inputField {
-  @apply outline-none flex-1 pl-4 col-span-8 bg-light;
+  @apply outline-none flex-1 pl-4 col-span-8 py-2 bg-transparent;
 }

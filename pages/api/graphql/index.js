@@ -1,16 +1,16 @@
 import {ApolloServer, gql} from "apollo-server-micro";
 import Entry from "../Models/entry";
 import User from "../Models/user";
-import {getUsers} from "./Functions/userFunctions.js";
+import {addUser, getUser, getUsers} from "./Functions/userFunctions.js";
 import connectToDatabase from "../mongo.config.js";
-
+import Cookies from "cookies";
+import jwt from "jsonwebtoken";
 
 const typeDefs = gql`
     type User {
         id:String,
         username:String,
-        password:String,
-        email:String
+        password:String
     }
     type Entry {
         id:String
@@ -23,30 +23,32 @@ const typeDefs = gql`
         entries: [Entry]
         entry(id:String):Entry
     }
+    type Mutation {
+        signUp(id:String,username:String,password:String):User
+    }
 
 `;
+
+const verifyToken = (token) => {
+    if (!token) return null;
+    try {
+        return jwt.verify(token,process.env.SECRET);
+    } catch {
+        return null;
+    }
+}
 
 const resolvers = {
     Query: {
         users:async() => {
-         
-            const db = await connectToDatabase();
-            console.log(db);
-            try {
-                const allUsers = await User.find({});
-                return allUsers;
-            } catch(err) {
-                return err;
-            }
+            let getAllUsers = await getUsers();
+            return getAllUsers;
+            
         },
         user:async(_,args) => {
-            const db = await connectToDatabase();
-            try {
-                const singleUser = await User.find({_id:args.id});
-                return singleUser;
-            } catch (err) {
-                return err;
-            }
+            let getUserByID = await getUser(args.id);
+            let singleUser = await getUserByID[0];
+            return singleUser;
         },
         entries:async() => {
             const db = await connectToDatabase();
@@ -69,9 +71,51 @@ const resolvers = {
                     return {err:err}
                 }
         }
+    },
+    Mutation: {
+        addUser:async(root,args) => {
+            try {
+                const newUser = new User({issuer:args.issuer,email:args.email});
+                await newUser.save();
+                console.log(newUser);
+                return newUser;
+            } catch (err) {
+                console.log(err);
+                    return {err:err};
+            }
+        },
+        signUp:async(root,{username,password},context) => {
+            let hash = await bcrypt.hash(password,10);
+            let newUser = new User({username,password:hash});
+            await newUser.save();
+            console.log(newUser);
+          
+            let token = jwt.sign({id:newUser._id},process.env.SECRET);
+            context.cookies.set("auth-token",token, {
+                httpOnly:true,
+                sameSite:"lax",
+                maxAge:6*60*60
+            })
+
+            return newUser;
+        }
     }
 }
-const server = new ApolloServer({typeDefs,resolvers});
+const server = new ApolloServer({
+    typeDefs,
+    resolvers, 
+    context:({req,res}) => {
+        const cookies = new Cookies(req,res);
+        const token = cookies.get("auth-token");
+        const user = verifyToken(token);
+        return {
+            cookies,
+            user
+        }
+    }
+
+
+});
 
 export  const  config  =  {
     api:  {

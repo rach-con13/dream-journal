@@ -28,6 +28,8 @@ export default function EditorSection(props) {
                return <CodeElement {...props} />
            case "quote":
                return <QuoteElement {...props} />
+           case "img":
+               return <ImageElement {...props} />
            default:
                return <DefaultElement {...props} />
        }
