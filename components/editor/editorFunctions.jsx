@@ -2,12 +2,12 @@ import { Editor, Text, Transforms } from "slate";
 
 
 export const testMark = (editor,format) => {
-    let marks = Editor.marks(editor);
+    const marks = Editor.marks(editor);
     if(marks[format]) {
         Editor.removeMark(editor,format)
     } else {
         Editor.addMark(editor,format,true);
-        console.log(marks);
+    
     }
   
 }
