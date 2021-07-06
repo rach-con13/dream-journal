@@ -1,6 +1,7 @@
 const { Transforms } = require("slate");
 const { useSlateStatic } = require("slate-react");
-
+import isUrl from "is-url";
+import imageExtensions from "image-extensions";
 export const withImages = editor => {
     const {insertData,isVoid} = editor;
     // by default slate elements have fully editable children as text
@@ -38,19 +39,20 @@ export const withImages = editor => {
 }
 
 
-const insertImage = (editor,url) => {
+export const insertImage = (editor,url) => {
   const text = {text:""}
   const image = {
       type:'image',
-      url:string,
+      url,
       children:[text]
   }
+ 
   
   Transforms.insertNodes(editor,image);
  
 }
 
-export const ImageButton = () => {
+const ImageButton = () => {
   const editor = useSlateStatic()
   
   return (
@@ -70,7 +72,7 @@ export const ImageButton = () => {
   )
 }
 
-const isImageUrl = url => {
+export const isImageUrl = url => {
   if (!url) return false
   if (!isUrl(url)) return false
   const ext = new URL(url).pathname.split('.').pop()

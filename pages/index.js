@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
   
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
         
@@ -18,7 +18,7 @@ export default function Home() {
         <SettingBar />
       <div  className=" main grid grid-cols-12 h-screen w-full p-0">
         <Sidebar />
-        <div className="col-span-9 bg-light">
+        <div  className="col-span-9 relative bg-light">
           
          <EditorSection /> 
         </div>

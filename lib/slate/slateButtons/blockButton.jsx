@@ -1,5 +1,5 @@
 import { Editor, Transforms } from "slate"
-
+import PropTypes from "prop-types";
 const BlockButton = ({editor,icon,format}) => {
 
     const renderBlock = () => {
@@ -13,9 +13,7 @@ const BlockButton = ({editor,icon,format}) => {
         )
     }
     
-    const renderVoid = () => {
-        
-    }
+
     return (
         <button className="ml-4" onClick={e => {
             e.preventDefault();
@@ -24,5 +22,12 @@ const BlockButton = ({editor,icon,format}) => {
             {icon}
         </button>
     )
+}
+
+BlockButton.propTypes = {
+    editor:PropTypes.object,
+    icon:PropTypes.element,
+    format:PropTypes.string
+
 }
 export default BlockButton;

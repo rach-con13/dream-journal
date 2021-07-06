@@ -1,4 +1,5 @@
 import next from 'next';
+import PropTypes from "prop-types";
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {createEditor,Editor, Transforms,Text,Value,Selection,Range} from "slate";
 import {Slate,Editable,withReact} from "slate-react";
@@ -18,11 +19,6 @@ export default function EditorSection(props) {
       },
     ])
     
-    useEffect(() => {
-        
-        console.log(Selection);
-    }, [Selection])
-
    const renderElement = useCallback(props => {
 
        switch(props.element.type) {
@@ -35,7 +31,7 @@ export default function EditorSection(props) {
            default:
                return <DefaultElement {...props} />
        }
-   })
+   },[])
    
    const renderLeaf = useCallback(props => <Leaf {...props} />, [])
 
@@ -77,4 +73,9 @@ export default function EditorSection(props) {
            
         </div>
     )
+}
+
+
+EditorSection.propTypes = {
+    element:PropTypes.object
 }
