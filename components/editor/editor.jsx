@@ -15,7 +15,6 @@ export default function EditorSection(props) {
         children: [{ text: 'A line of text in a paragraph.' }],
       },
     ])
-
    const renderElement = useCallback(props => {
 
        switch(props.element.type) {
@@ -38,7 +37,7 @@ export default function EditorSection(props) {
             onChange={newValue => setValue(newValue)}>
               
                 <EditorToolbar editor={editor} /> 
-                <div className="mt-8 mx-auto w-10/12 ">
+                <div className="w-10/12 mx-auto mt-8 ">
                     <Editable renderLeaf={renderLeaf} renderElement={renderElement} />
                 </div>
             
