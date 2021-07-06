@@ -14,6 +14,7 @@ async function connectToDatabase() {
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
+  console.log(db);
 
   connection.isConnected = db.connections[0].readyState
 }

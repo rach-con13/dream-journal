@@ -20,6 +20,18 @@ export const getUser = async(id) => {
             }
 }
 
+export const addUser = async(issuer,email) => {
+    try {
+        const newUser = new User({issuer,email});
+        newUser.save();
+        console.log(newUser);
+        return newUser;
+    } catch (err) {
+        console.log(err);
+            return {err:err};
+    }
+}
+
 const deleteUser = (id) => {
 
 }
