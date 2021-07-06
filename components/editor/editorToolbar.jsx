@@ -21,10 +21,10 @@ export default function EditorToolbar(props) {
                        <MarkButton editor={props.editor} format='italic' icon={<FaItalic />} />
                        <MarkButton editor={props.editor} format='underline' icon={<FaUnderline />} />
                        <MarkButton editor={props.editor} format='strikethrough' icon={<FaStrikethrough />} />
-                       <BlockButton editor={props.editor} format='img' icon={<BsFillImageFill />} />
+                       <BlockButton editor={props.editor} format='image' icon={<BsFillImageFill />} />
                        {/* <BlockButton editor={props.editor} format='code' icon={<BsCode />} />
                        <BlockButton editor={props.editor} format='quote' icon={<FaQuoteRight />} /> */}
-                      
+                      <ImageButton />
                 </div>
             </div>
         </div>

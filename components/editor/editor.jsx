@@ -4,11 +4,12 @@ import {createEditor,Editor, Transforms,Text,Value,Selection,Range} from "slate"
 import {Slate,Editable,withReact} from "slate-react";
 import EditorToolbar from "./editorToolbar";
 import {Leaf} from "../../lib/slate/leaf";
-import { CodeElement,QuoteElement,DefaultElement } from './elementBlocks';
+import { CodeElement,QuoteElement,ImageElement,DefaultElement } from './elementBlocks';
+import { withImages } from './plugins/withImage';
 
 
 export default function EditorSection(props) {
-    const [editor] = useState(() => withReact(createEditor()))
+    const [editor] = useState(() => withImages(withReact(createEditor())))
     // const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState([
       {
@@ -16,6 +17,7 @@ export default function EditorSection(props) {
         children: [{ text: 'A line of text in a paragraph.' }],
       },
     ])
+    
     useEffect(() => {
         
         console.log(Selection);
@@ -28,7 +30,7 @@ export default function EditorSection(props) {
                return <CodeElement {...props} />
            case "quote":
                return <QuoteElement {...props} />
-           case "img":
+           case "image":
                return <ImageElement {...props} />
            default:
                return <DefaultElement {...props} />

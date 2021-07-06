@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import { useFocused, useSelected } from "slate-react"
 
 export const CodeElement = props => {
     return (
@@ -8,11 +9,18 @@ export const CodeElement = props => {
     )
   }
 
-export const ImageElement = props => {
+export const ImageElement = ({attributes,children,element}) => {
+  const selected = useSelected();
+  const focused = useFocused();
+
+  const shadow = selected && focused ? "shadow-sm" : 'no-shadow';
   return (
-    <img src="" {...props.attributes}>
-      {props.children}
-    </img>
+   <div {...attributes}>
+     <div contentEditable={false}>
+       <img src={element.url} className={shadow} />
+     </div>
+     {children}
+   </div>
   )
 }
 

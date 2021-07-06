@@ -13,6 +13,9 @@ const BlockButton = ({editor,icon,format}) => {
         )
     }
     
+    const renderVoid = () => {
+        
+    }
     return (
         <button className="ml-4" onClick={e => {
             e.preventDefault();
