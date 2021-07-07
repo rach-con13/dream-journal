@@ -26,9 +26,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Use Node.js
-        run: actions/setup-node@v2.2.0
-        with: node-version:14.x
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.2.0
 
       - name: Install Dependencies
         run: npm install
