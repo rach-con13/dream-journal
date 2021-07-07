@@ -5,6 +5,8 @@ import {addUser, getUser, getUsers} from "./Functions/userFunctions.js";
 import connectToDatabase from "../mongo.config.js";
 import Cookies from "cookies";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 
 const typeDefs = gql`
     type User {
@@ -24,8 +26,9 @@ const typeDefs = gql`
         entry(id:String):Entry
     }
     type Mutation {
-        signUp(id:String,username:String,password:String):User
+        signUp(username:String,password:String):User
     }
+    
 
 `;
 
@@ -73,37 +76,48 @@ const resolvers = {
         }
     },
     Mutation: {
-        addUser:async(root,args) => {
-            try {
-                const newUser = new User({issuer:args.issuer,email:args.email});
-                await newUser.save();
-                console.log(newUser);
-                return newUser;
-            } catch (err) {
-                console.log(err);
-                    return {err:err};
-            }
-        },
         signUp:async(root,{username,password},context) => {
+            try {
             let hash = await bcrypt.hash(password,10);
-            let newUser = new User({username,password:hash});
+            let newUser = await new User({username,password:hash});
             await newUser.save();
             console.log(newUser);
           
-            let token = jwt.sign({id:newUser._id},process.env.SECRET);
-            context.cookies.set("auth-token",token, {
-                httpOnly:true,
-                sameSite:"lax",
-                maxAge:6*60*60
-            })
-
-            return newUser;
+            // let token = jwt.sign({id:newUser._id},process.env.SECRET);
+            // context.cookies.set("auth-token",token, {
+            //     httpOnly:true,
+            //     sameSite:"lax",
+            //     maxAge:6*60*60
+            // })
+            // console.log(context.cookies);
+        
+            return {username:"Fairy121"};
+        } catch(err) {
+            console.log(err);
+            return err;
         }
+        }
+      
     }
 }
+
+// addUser:async(root,args) => {
+//     try {
+//         const newUser = new User({issuer:args.issuer,email:args.email});
+//         await newUser.save();
+//         console.log(newUser);
+//         return newUser;
+//     } catch (err) {
+//         console.log(err);
+//             return {err:err};
+//     }
+// },
+
+
+
 const server = new ApolloServer({
     typeDefs,
-    resolvers, 
+    resolvers,
     context:({req,res}) => {
         const cookies = new Cookies(req,res);
         const token = cookies.get("auth-token");
@@ -112,10 +126,12 @@ const server = new ApolloServer({
             cookies,
             user
         }
-    }
+    }   
+   
 
 
 });
+
 
 export  const  config  =  {
     api:  {
