@@ -29,8 +29,8 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.2.0
 
-      - name: Install Dependencies
-        uses: bahmutov/npm-install@v1.6.0
+      - name: npm/yarn/pnpm install
+        uses: Jaid/action-npm-install@v1.2.4
 
       - name: Lint with Prettier
         run: npm run lint
