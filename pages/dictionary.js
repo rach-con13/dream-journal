@@ -1,7 +1,9 @@
+import { RequireAuth } from '../components/auth/requireAuth';
 import EditorSection from '../components/editor/editor';
 import Sidebar from '../components/sidebar/sidebar';
 
-export default function Dictionary() {
+function Dictionary(props) {
+  console.log(props);
   return (
     <div className=" main grid grid-cols-12 h-screen w-full p-0">
       <Sidebar />
@@ -19,3 +21,9 @@ export default function Dictionary() {
     </div>
   );
 }
+
+Dictionary.getInitialProps = async (ctx) => {
+  const cookie = ctx.req ? ctx.req.headers.cookie : null;
+  return { username: 'Fairy13', cooe: ctx.req };
+};
+export default Dictionary;
