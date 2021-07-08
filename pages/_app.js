@@ -1,17 +1,18 @@
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
 import "../global.css";
-import { ApolloProvider } from '@apollo/client';
-import client from '../lib/apolloClient/apolloClient.config';
-import UserProvider from '../components/auth/userContext';
+import { ApolloProvider } from "@apollo/client";
+import client from "../lib/apolloClient/apolloClient.config";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <UserProvider>
-        <Component {...pageProps} />
-      </UserProvider>
+      <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }
 
-export default MyApp
+// MyApp.propTypes = {
+//   Component:PropTypes.
+// };
+
+export default MyApp;
