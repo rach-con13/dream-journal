@@ -46,7 +46,7 @@ export default function EditorSection(props) {
 
                 }}>
 
-                <EditorToolbar editor={editor} />
+                <EditorToolbar editor={editor} value={value} />
                 <div className="w-10/12 mx-auto mt-8 ">
                     <Editable renderLeaf={renderLeaf} renderElement={renderElement} onKeyDown={e => {
                         if (!e.ctrlKey) {
