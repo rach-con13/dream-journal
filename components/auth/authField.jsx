@@ -4,7 +4,6 @@ import style from "./field.module.css";
 import PropTypes from "prop-types";
 export default function AuthField(props) {
     
-    
     return (
     <div  className={`${style.inputFieldContainer} `} >
         <label htmlFor="username" className={style.inputLabel}>{props.label}</label>
@@ -12,10 +11,18 @@ export default function AuthField(props) {
     </div>
     )
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/firebase
 AuthField.propTypes = {
     label:PropTypes.string,
     name:PropTypes.string,
     type:PropTypes.string,
     onChange:PropTypes.func,
     value:PropTypes.string
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/firebase
