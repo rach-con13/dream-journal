@@ -11,18 +11,10 @@ export default function AuthField(props) {
     </div>
     )
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/firebase
 AuthField.propTypes = {
     label:PropTypes.string,
     name:PropTypes.string,
     type:PropTypes.string,
     onChange:PropTypes.func,
     value:PropTypes.string
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/firebase
