@@ -19,7 +19,8 @@ const typeDefs = gql`
     }
     type Mutation {
         signUp(username:String,password:String):User,
-        createEntry(title:String,content:String):Entry
+        createEntry(title:String,content:String):Entry,
+        deleteEntry(id:String):Entry
     }
     
     
