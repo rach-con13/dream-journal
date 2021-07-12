@@ -7,19 +7,19 @@ export default function SettingBar(props) {
     
 
     return (
-        <div className="bg-extradark">
+        <div  className="h-screen bg-secondary text-secondary-superlight">
             <div  className="px-4 mt-4">
-                <p  className="block text-light text-center text-2xl">
+                <p  className="block text-2xl text-center">
                   <CgProfile />
                 </p>
                 <div className="mt-8 text">
-                <p  className="block text-center text-2xl">
+                <p  className="block text-2xl text-center">
                         <AiOutlineSetting />
                 </p>
-                <p  className="  text-center text-2xl mt-2">
+                <p  className="mt-2 text-2xl text-center ">
                 <FiBook />
                 </p>
-                <p  className="  text-center text-2xl mt-2">
+                <p  className="mt-2 text-2xl text-center ">
                  
                        <IoMdNotificationsOutline />
                 </p>

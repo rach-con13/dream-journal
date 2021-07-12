@@ -1,32 +1,55 @@
-import Head from 'next/head';
 import Sidebar from '../components/sidebar/sidebar';
-import SettingBar from '../components/sidebar/settingBar';
 import EditorSection from '../components/editor/editor';
-export default function Home() {
-  return (
-    <div className="box-border p-0 m-0">
-      <Head>
-        <title>Create Next App</title>
+import SettingBar from '../components/settings/settingBar';
 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-      
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div
+import ChannelEntriesBar from '../components/channel/channelEntriesBar';
+import { useState } from 'react';
+
+export default function Home() {
+  const [currentClass,setCurrentClass] = useState("gridContainer");
+  const [hidden,setHidden] = useState(false);
+
+  const hideColumn = () => {
+    setCurrentClass("hiddenColumnContainer");
+    setHidden(true);
+  }
+ 
+  return (
+    <div  className="box-border p-0 m-0">
+     <div style={{display:"grid",gridTemplateColumns:"auto 1fr"}} className="w-full h-screen">
+
+       <SettingBar />
+       <div className={currentClass}>
+        <div className="mainSidebar">
+          <Sidebar />
+        </div>
+        <div className="secondSidebar">
+        <ChannelEntriesBar onClick={hideColumn} hidden={hidden} />
+        </div>
+        <div className="editor">
+          <EditorSection />
+        </div>
+           
+       </div>
+
+     </div>
+      {/* <div
         style={{
+         
           display: 'grid',
           gridTemplateColumns: 'auto 1fr',
           fontFamily: 'Work Sans',
         }}
-      >
+      className="w-full h-screen">
         <SettingBar />
-        <div className="grid w-full h-screen grid-cols-12 p-0 main">
-          <Sidebar />
-          <div className="relative col-span-9 bg-light">
+         <div style={{border:'3px solid blue',display:"grid",gridTemplateColumns:"auto 1fr"}} className="w-full h-screen p-0 main">
+        <Sidebar />
+          <div className="relative bg-light">
             <EditorSection />
           </div>
-        </div>
-      </div>
+        
+        </div> 
+      </div> */}
     </div>
   );
 }
