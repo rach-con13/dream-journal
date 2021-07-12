@@ -24,9 +24,9 @@ export default function Sidebar(props) {
     // console.log(data);
 
     return (
-       <div className="grid grid-cols-12 col-span-6 bg-primary-superdark">
+       <div className="h-full  bg-primary-superdark">
             <ChannelBar />
-            <ChannelSettings />
+   
 
        </div>
     )

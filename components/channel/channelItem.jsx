@@ -5,13 +5,16 @@ import ChannelSettings from "./channelSetting";
 const ChannelItem = ({name,color}) => {
     const {open,toggle} = WithToggle();
 
+    const chooseColor = () => {
+        
+    }
 
     return (
         <>
     <div  className="flex items-center mt-2">
-        <div className={`p-2 rounded-full ${color}`} />
+        <button onClick={chooseColor} className={`p-2 rounded-full ${color}`} />
         <p className="ml-3 text-base">{name}</p>
-        <p onClick={toggle}  className="ml-2 text-lg"><AiOutlineSetting /></p>
+      
     </div>
     
     </>

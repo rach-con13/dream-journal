@@ -1,16 +1,18 @@
 import ChannelItem from "./channelItem";
 import {AiOutlineSetting} from "react-icons/ai";
 const ChannelBar = () => {
+    
     return (
         <>
-        <div style={{boxSizing:"border-box"}} className="col-span-6 text-primary bg-primary-superdark">
+        <div style={{boxSizing:"border-box"}} className="relative z-10 h-full text-primary bg-primary-superdark">
+            
             <div className="w-10/12 py-4 mx-auto">
             
                 <p className="text-lg">Search</p>
                 
             </div>
             <div className="py-4 mx-auto bg-primary-dark">
-                <div className="w-10/12 mx-auto">
+                <div  className="w-10/12 mx-auto">
                      <p className="text-base font-bold">New Channel</p>
                 </div>
             </div>
