@@ -12,6 +12,7 @@ export default function AuthField(props) {
     )
 }
 AuthField.propTypes = {
+
     label: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
