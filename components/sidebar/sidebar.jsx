@@ -1,7 +1,9 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react'
 import SidebarEntry from "./sidebarEntry";
-
+import ChannelBar from "../channel/channelBar";
+import ChannelEntriesBar from '../channel/channelEntriesBar';
+import ChannelSettings from '../channel/channelSetting';
 const USERS = gql`
  query getUsers {
     users {
@@ -22,20 +24,10 @@ export default function Sidebar(props) {
     // console.log(data);
 
     return (
-       <div className="col-span-3 bg-superlight">
-       
-            <header >
-               <div className="mx-auto w-10/12 py-3">
-                   <p className="text-lg text-extradark font-bold ">Dreamer</p>
-               </div>
-           </header>
-           <div className="mx-auto w-10/12 mt-6">
-               <p className="text-base text-text font-bold">Entries</p>
-               <div className="text-text">
-                    <SidebarEntry />
-                    <SidebarEntry />
-               </div>
-           </div> 
+       <div className="grid grid-cols-12 col-span-6 bg-primary-superdark">
+            <ChannelBar />
+            <ChannelSettings />
+
        </div>
     )
 }
