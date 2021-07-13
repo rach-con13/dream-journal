@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import Image from "next/image";
 import PropTypes from "prop-types";
 import { useFocused, useSelected } from "slate-react"
 
@@ -24,7 +25,8 @@ export const ImageElement = ({attributes,children,element}) => {
   return (
    <div {...attributes}>
      <div contentEditable={false}>
-       <img src={element.url} className={shadow} />
+     
+       <Image src={element.url} className={shadow} alt="" />
      </div>
      {children}
    </div>
@@ -54,5 +56,5 @@ ImageElement.propTypes = {
 
   DefaultElement.propTypes = {
     attributes:PropTypes.object,
-    children:PropTypes.object
+    children:PropTypes.node
   }

@@ -1,37 +1,43 @@
-import User from "../../Models/user";
-import connectToDatabase from "../../mongo.config.js";
-export const getUsers = async() => {
-       const db = await connectToDatabase();
-       try {
-        const allUsers = await User.find({});
-        return allUsers;
-       } catch(err) {
-        return err;
-       }
-}
+import User from '../../Models/user';
+import connectToDatabase from '../../mongo.config.js';
+import bcrypt from 'bcrypt';
+export const getUsers = async () => {
+  const db = await connectToDatabase();
+  try {
+    const allUsers = await User.find({});
+    return allUsers;
+  } catch (err) {
+    return err;
+  }
+};
 
-export const getUser = async(id) => {
-        const db = await connectToDatabase();
-            try {
-                const singleUser = await User.find({_id:id});
-                return singleUser;
-            } catch(err) {
-                return err;
-            }
-}
+export const getUser = async (id) => {
+  const db = await connectToDatabase();
+  try {
+    const singleUser = await User.find({ _id: id });
+    return singleUser;
+  } catch (err) {
+    return err;
+  }
+};
 
-export const addUser = async(issuer,email) => {
-    try {
-        const newUser = new User({issuer,email});
-        newUser.save();
-        console.log(newUser);
-        return newUser;
-    } catch (err) {
-        console.log(err);
-            return {err:err};
-    }
-}
+export const addUser = async (username, password) => {
+  try {
+    let hash = await bcrypt.hash(password, 10);
+    let newUser = await new User({ username, password: hash });
+    await newUser.save();
+    return newUser;
+  } catch (err) {
+    console.log(err);
+    return { err: err };
+  }
+};
 
-const deleteUser = (id) => {
-
-}
+export const deleteUser = async (id) => {
+  try {
+    let deleteUser = await User.findByIdAndDelete({ _id: id });
+    return deleteUser;
+  } catch (err) {
+    return { err: err };
+  }
+};

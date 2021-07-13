@@ -6,26 +6,32 @@ module.exports = {
     
 
     extend: {
+    keyframes: {
+      fadeIn: {
+       '0%':{opacity:'0'},
+       "100%":{opacity:"1"},
+      }
+      // moveRight: {
+      //   '0%:{transform:'
+      // }
+    },
+    animation: {
+      fadeIn:"fadeIn 0.5s ease-in-out forwards"
+    },
      colors: {
-      superlight:"#FFFAFA",
-      light:'#F3F3F3',
-      DEFAULT:"#CBCBCB",
-      dark:"#3C352E",
-      extradark:"#1A171F",
-      text:"#978F85"
-
-      // primary:{
-      //   superlight:"#FFFFFF",
-      //   light:"#FFF8F0",
-      //   DEFAULT:"#FFEBD1",
-      //   dark:"#B0A28F",
-      //   extradark:"#978F85"
-      // },
-      // secondary:{
-      //   light:"#EFEFEF",
-      //   DEFAULT:"#A0A0A0",
-      //   dark:"#26221D"
-      // },  
+      primary: {
+        superlight:"#F1F4FF",
+        light:"#4A4F60",
+        DEFAULT:"#B5B1AD",
+        dark:"#514D4F",
+        superdark:"#353535"
+      },
+      secondary: {
+        superlight:"#FCEEE0",
+        light:"#FFA133",
+        DEFAULT:"#F95F09",
+        dark:"#AE4408"
+      }
      }
     },
   },
