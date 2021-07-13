@@ -5,7 +5,6 @@ import {FiBook} from "react-icons/fi";
 import {IoMdNotificationsOutline} from "react-icons/Io";
 export default function SettingBar(props) {
     
-
     return (
         <div className="bg-extradark">
             <div  className="px-4 mt-4">
