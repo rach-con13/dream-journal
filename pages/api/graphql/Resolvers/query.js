@@ -1,5 +1,6 @@
 import Entry from '../../Models/entry';
 import User from '../../Models/user';
+import { getChannel, getChannels } from '../Functions/channelFunctions';
 import { getEntries, getEntry } from '../Functions/entryFunctions';
 import { getUser, getUsers } from '../Functions/userFunctions';
 
@@ -22,10 +23,25 @@ const Queries = {
     }
   },
   entry: async (_, args) => {
-    const { id } = args;
     try {
       const oneEntry = await getEntry(args.id);
       return oneEntry;
+    } catch (err) {
+      return { err: err };
+    }
+  },
+  channels: async (_, args) => {
+    try {
+      const allChannels = await getChannels();
+      return allChannels;
+    } catch (err) {
+      return { err: err };
+    }
+  },
+  channel: async (_, args) => {
+    try {
+      const oneChannel = await getChannel(args.id);
+      return oneChannel;
     } catch (err) {
       return { err: err };
     }

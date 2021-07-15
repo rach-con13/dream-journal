@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import Entry from '../../Models/entry';
 import User from '../../Models/user';
 import connectToDatabase from '../../mongo.config';
-import { addEntry,deleteEntry } from '../Functions/entryFunctions';
+import { addChannel, deleteChannel } from '../Functions/channelFunctions';
+import { addEntry, deleteEntry } from '../Functions/entryFunctions';
 import { addUser } from '../Functions/userFunctions';
 
 const Mutation = {
@@ -31,8 +32,27 @@ const Mutation = {
       let db = connectToDatabase();
       let deletedEntry = await deleteEntry(id);
       return deletedEntry;
-    } catch(err) {
-      return {err:err}
+    } catch (err) {
+      return { err: err };
+    }
+  },
+  createChannel: async (root, { title, pinned }) => {
+    try {
+      let db = connectToDatabase();
+      let newChannel = await addChannel(title);
+      return newChannel;
+    } catch (err) {
+      return { err: err };
+    }
+  },
+  deleteChannel: async (root, { id }) => {
+    try {
+      let db = connectToDatabase();
+      let deleteChannel = await deleteChannel(id);
+      console.log(deleteChannel);
+      return { title: 'rachael', id: '454' };
+    } catch (err) {
+      return { err: err };
     }
   },
 };

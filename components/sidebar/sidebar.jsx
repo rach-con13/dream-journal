@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react'
 import SidebarEntry from "./sidebarEntry";
-import ChannelBar from "../channel/channelBar";
+import ChannelBar from "../channel/sidebar/channelBar";
 import ChannelEntriesBar from '../channel/channelEntriesBar';
-import ChannelSettings from '../channel/channelSetting';
+
 const USERS = gql`
  query getUsers {
     users {

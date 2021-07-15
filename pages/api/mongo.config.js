@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const connection = {} /* creating connection object*/
+const connection = {}; /* creating connection object*/
 
 async function connectToDatabase() {
   /* check if we have connection to our databse*/
   if (connection.isConnected) {
-    return
+    return;
   }
 
   /* connecting to our database */
@@ -13,10 +13,9 @@ async function connectToDatabase() {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-  })
-  console.log(db);
+  });
 
-  connection.isConnected = db.connections[0].readyState
+  connection.isConnected = db.connections[0].readyState;
 }
 
 export default connectToDatabase;
