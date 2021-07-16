@@ -30,6 +30,7 @@ const typeDefs = gql`
     deleteEntry(id: String): Entry
     createChannel(title: String, pinned: Boolean): Channel
     deleteChannel(id: String): Channel
+    updateChannel(id: String, title: String): Channel
   }
 `;
 export default typeDefs;
