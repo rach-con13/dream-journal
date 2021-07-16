@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import ChannelItem from '../channelItem/channelItem';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import Channels from './channels';
 import CreateChannel from './createChannel';
-const ChannelBar = ({ toggle,onClick}) => {
+const ChannelBar = ({ toggle, onClick }) => {
   return (
     <div className="h-full transition-all bg-primary-superdark">
-    
       <div
         style={{ boxSizing: 'border-box' }}
         className="relative z-10 h-full text-primary bg-primary-superdark"
@@ -27,3 +27,8 @@ const ChannelBar = ({ toggle,onClick}) => {
   );
 };
 export default ChannelBar;
+
+ChannelBar.propTypes = {
+  toggle: PropTypes.boolean,
+  onClick: PropTypes.func,
+};

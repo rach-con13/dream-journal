@@ -1,31 +1,34 @@
 import { gql, useQuery } from '@apollo/client';
-import React from 'react'
-import SidebarEntry from "./sidebarEntry";
-import ChannelBar from "../channel/sidebar/channelBar";
-import ChannelEntriesBar from '../channel/channelEntriesBar';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import ChannelBar from '../channel/sidebar/channelBar';
 
 const USERS = gql`
- query getUsers {
+  query getUsers {
     users {
-        id
-        username
-        password
-        email
+      id
+      username
+      password
+      email
     }
- }
+  }
 `;
 
-export default function Sidebar(props) {
-    // const {loading,error,data} = useQuery(USERS);
+export default function Sidebar({ toggle }) {
+  // const {loading,error,data} = useQuery(USERS);
 
-    // if(loading) return <p>Loading...</p>
-    // if (error) return <p>Error</p>
+  // if(loading) return <p>Loading...</p>
+  // if (error) return <p>Error</p>
 
-    // console.log(data);
+  // console.log(data);
 
-    return (
-       <div className="h-full transition-all bg-primary-superdark">
-            <ChannelBar toggle={props.toggle} />
-       </div>
-    )
+  return (
+    <div className="h-full transition-all bg-primary-superdark">
+      <ChannelBar toggle={toggle} />
+    </div>
+  );
 }
+Sidebar.propTypes = {
+  toggle: PropTypes.boolean,
+};

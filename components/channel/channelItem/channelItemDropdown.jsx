@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { BsPencil } from 'react-icons/bs';
 import { AiOutlineStar } from 'react-icons/ai';
@@ -32,3 +33,8 @@ export default function ChannelItemDropdown({ setOpen, id }) {
     </>
   );
 }
+
+ChannelItemDropdown.propTypes = {
+  setOpen: PropTypes.func,
+  id: PropTypes.string,
+};
