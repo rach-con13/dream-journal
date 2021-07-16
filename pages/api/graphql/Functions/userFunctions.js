@@ -2,7 +2,6 @@ import User from '../../Models/user';
 import connectToDatabase from '../../mongo.config.js';
 import bcrypt from 'bcrypt';
 export const getUsers = async () => {
-  const db = await connectToDatabase();
   try {
     const allUsers = await User.find({});
     return allUsers;
@@ -12,7 +11,6 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (id) => {
-  const db = await connectToDatabase();
   try {
     const singleUser = await User.find({ _id: id });
     return singleUser;
