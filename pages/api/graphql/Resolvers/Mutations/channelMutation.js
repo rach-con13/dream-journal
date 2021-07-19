@@ -18,13 +18,15 @@ const ChannelMutation = {
       return { err: err };
     }
   },
-  updateChannel: async (root, { id, title }) => {
+  updateChannel: async (root, { id, title, pinned }) => {
     try {
       let updateChannel = await Channel.findByIdAndUpdate(
         { _id: id },
-        { title }
+        { title, pinned }
       );
+
       updateChannel.save();
+      console.log(updateChannel);
       return updateChannel;
     } catch (err) {
       return { err: err };

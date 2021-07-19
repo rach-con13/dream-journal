@@ -1,4 +1,5 @@
-const ChannelEntriesBar = ({ onClick, open }) => {
+import PropTypes from 'prop-types';
+const ChannelEntriesBar = ({ open }) => {
   return (
     <div
       style={{ width: '30%', left: `${open ? '0%' : '-30%'}` }}
@@ -46,5 +47,8 @@ const ChannelEntriesBar = ({ onClick, open }) => {
       </div>
     </div>
   );
+};
+ChannelEntriesBar.propTypes = {
+  open: PropTypes.boolean,
 };
 export default ChannelEntriesBar;
