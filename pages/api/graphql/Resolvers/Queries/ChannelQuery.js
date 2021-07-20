@@ -1,7 +1,9 @@
+import connectToDatabase from '../../../mongo.config';
 import { getChannel, getChannels } from '../../Functions/channelFunctions';
 
 const ChannelQuery = {
   channels: async (_, args) => {
+    const db = connectToDatabase();
     try {
       const allChannels = await getChannels();
       return allChannels;

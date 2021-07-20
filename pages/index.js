@@ -1,15 +1,15 @@
-import Sidebar from '../components/sidebar/sidebar';
 import EditorSection from '../components/editor/editor';
 import SettingBar from '../components/settings/settingBar';
 
-import ChannelEntriesBar from '../components/channel/channelEntriesBar';
 import { useState } from 'react';
 import { WithToggle } from '../hooks/withToggle';
-import ChannelBar from '../components/channel/sidebar/channelBar';
+
+import ChannelSideBar from '../ChannelSidebar/channelSidebar';
+import ChannelEntriesBar from '../ChannelSidebar/channel/channelEntriesBar';
 
 export default function Home() {
   const { open, toggle } = WithToggle();
-  const [isChannels,setChannels] = useState(true)// switch between <createChannel /> and <channels />
+
   return (
     <div
       style={{ gridTemplateColumns: '25% 1fr' }}
@@ -23,7 +23,8 @@ export default function Home() {
         className="w-full h-screen "
       >
         <SettingBar />
-        <ChannelBar onClick={() => setChannels(false)} isChannels={isChannels} toggle={toggle} />
+
+        <ChannelSideBar toggle={toggle} />
       </div>
       <div className="relative w-full h-screen">
         <ChannelEntriesBar open={open} />
