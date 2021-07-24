@@ -1,9 +1,9 @@
 import { addUser } from '../../Functions/userFunctions';
 
 const UserMutation = {
-  signUp: async (root, { username, password }) => {
+  signUp: async (root, { authID, username, password, email }) => {
     try {
-      let newUser = await addUser(username, password);
+      let newUser = await addUser(authID, username, password, email);
       return newUser;
     } catch (err) {
       return err;

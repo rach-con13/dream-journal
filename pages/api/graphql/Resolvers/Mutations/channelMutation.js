@@ -1,10 +1,16 @@
 import Channel from '../../../Models/channel';
+import User from '../../../Models/user';
+import connectToDatabase from '../../../mongo.config';
 import { addChannel, updateChannel } from '../../Functions/channelFunctions';
 
 const ChannelMutation = {
-  createChannel: async (root, { title, pinned }) => {
+  createChannel: async (root, { authID, title }) => {
+    let db = connectToDatabase();
     try {
-      let newChannel = await addChannel(title);
+      let newChannel = await addChannel(authID, title);
+      console.log(newChannel);
+      // add channel to current user
+
       return newChannel;
     } catch (err) {
       return { err: err };

@@ -10,12 +10,9 @@ export default function DropdownButton({
   hotkey,
   id,
 }) {
-  const [mutate, { data }] = useMutation(mutation, {
-    update: update,
-  });
+  const [mutate, { data }] = useMutation(mutation);
   const mutateChannel = () => {
     mutate({ variables: variables });
-    console.log(data);
   };
   return (
     <>

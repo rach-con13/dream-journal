@@ -7,7 +7,8 @@ const channel = new Schema({
     required: true,
   },
   pinned: { type: Boolean, default: false },
+  entries: [{ type: Schema.Types.ObjectId, ref: 'Entry' }],
 });
 
-let Channel = mongoose.models.Channel || mongoose.model('Channel', channel);
+let Channel = mongoose.models?.Channel || mongoose.model('Channel', channel);
 export default Channel;

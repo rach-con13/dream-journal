@@ -1,3 +1,4 @@
+import Channel from '../../../Models/channel';
 import connectToDatabase from '../../../mongo.config';
 import { getChannel, getChannels } from '../../Functions/channelFunctions';
 
@@ -13,10 +14,16 @@ const ChannelQuery = {
   },
   channel: async (_, args) => {
     try {
-      const oneChannel = await getChannel(args.id);
-      return oneChannel;
+      const db = connectToDatabase();
+
+      const singleChannel = await Channel.findOne({ _id: args.id }).populate(
+        'entries'
+      );
+      
+
+      return singleChannel;
     } catch (err) {
-      return { err: err };
+      return err;
     }
   },
 };
