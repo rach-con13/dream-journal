@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { RiAddBoxLine } from 'react-icons/ri';
-import { WithToggle } from '../../hooks/withToggle';
+import { WithToggle } from '../../../hooks/withToggle';
 
 import ChannelSettings from './ChannelSettings/channelSettings';
 
-const Channel = ({ title, pinned, color, id, onClick, selected }) => {
+const Channel = ({ title, color, id, onClick, selected }) => {
   const { open, setOpen } = WithToggle();
+  const [isUpdating, setUpdating] = useState(false);
 
   return (
     <>
@@ -21,16 +23,9 @@ const Channel = ({ title, pinned, color, id, onClick, selected }) => {
         <div className="flex items-center">
           <button className={`p-2 rounded-full ${color}`} />
           <p className="ml-3 text-base">{title}</p>
-          <p className="ml-2">{pinned ? 'PIN' : ''}</p>
         </div>
         <ChannelSettings id={id} title={title} />
-
-        {/* {open ? (
-          <ChannelItemDropdown name={name} id={id} setOpen={setOpen} />
-        ) : null} */}
       </div>
-      {/* <ColorPicker open={open}/>
-       */}
     </>
   );
 };
@@ -42,6 +37,5 @@ Channel.propTypes = {
   onClick: PropTypes.func,
   selected: PropTypes.boolean,
   title: PropTypes.string,
-  pinned: PropTypes.boolean,
 };
 export default Channel;

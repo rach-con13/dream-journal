@@ -5,12 +5,13 @@ import { AiOutlineStar } from 'react-icons/ai';
 import {
   UpdateCacheAfterDelete,
   UpdateCacheAfterUpdate,
-} from '../../../lib/apolloClient/CacheUpdates/updates';
+} from '../../../../lib/apolloClient/CacheUpdates/updates';
 import {
   DELETE_CHANNEL,
   UPDATE_CHANNEL,
-} from '../../../lib/apolloClient/Functions/channel';
+} from '../../../../lib/apolloClient/Functions/channel';
 import DropdownButton from './DropdownButton';
+
 export default function ChannelDropdown({ setOpen, id, title }) {
   return (
     <>
@@ -41,6 +42,7 @@ export default function ChannelDropdown({ setOpen, id, title }) {
           name="Add to Favourite"
           id={id}
         />
+   
         {/* <DropdownButton mutation={UPDATE_CHANNEL} update={UpdateCacheAfterUpdate} variables={{id:id}} */}
 
         {/* <DropdownButton
