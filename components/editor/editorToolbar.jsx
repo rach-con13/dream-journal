@@ -9,12 +9,13 @@ import {
   FaStrikethrough,
   FaUnderline,
   FaQuoteRight,
+  FaCode,
 } from 'react-icons/fa';
-import { ImageButton } from '../../lib/slate/slateButtons/imageButton';
-import { ImageModal } from './EditorImage/imageModal';
+import { BiHeading } from 'react-icons/bi';
+
 import { gql, useMutation } from '@apollo/client';
 import { CREATE_ENTRY } from '../../lib/apolloClient/Functions/entry';
-import EditorImageSection from './EditorImage/EditorImageSection';
+import HeadingBlockButton from './Blocks/Typography/HeadingBlockButton';
 
 export default function EditorToolbar(props) {
   const [createEntry, { data }] = useMutation(CREATE_ENTRY);
@@ -57,10 +58,23 @@ export default function EditorToolbar(props) {
                 format="strikethrough"
                 icon={<FaStrikethrough />}
               />
-              <EditorImageSection />
-              {/* <BlockButton editor={props.editor} format='image' icon={<BsFillImageFill />} /> */}
-              {/* <BlockButton editor={props.editor} format='code' icon={<BsCode />} />
-                       <BlockButton editor={props.editor} format='quote' icon={<FaQuoteRight />} /> */}
+              <BlockButton
+                editor={props.editor}
+                icon={<FaCode />}
+                format="code"
+              />
+              <BlockButton
+                editor={props.editor}
+                icon={<FaQuoteRight />}
+                format="quote"
+              />
+              <HeadingBlockButton editor={props.editor} />
+
+              {/* <BlockButton
+                editor={props.editor}
+                icon={<BiHeading />}
+                format="h1"
+              /> */}
             </div>
             <button
               onClick={saveEntry}

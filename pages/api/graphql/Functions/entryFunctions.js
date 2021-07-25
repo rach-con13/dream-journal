@@ -1,8 +1,12 @@
+import Channel from '../../Models/channel';
 import Entry from '../../Models/entry';
-export const addEntry = async (title, content) => {
+import connectToDatabase from '../../mongo.config';
+export const addEntry = async (channelID, title, content) => {
   try {
+    const db = connectToDatabase();
     const newEntry = new Entry({ title, content });
     newEntry.save();
+
     return newEntry;
   } catch (err) {
     return { err: err };

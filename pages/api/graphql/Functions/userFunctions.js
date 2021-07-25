@@ -10,23 +10,30 @@ export const getUsers = async () => {
   }
 };
 
-export const getUser = async (id) => {
+export const getUser = async (authID) => {
   try {
-    const singleUser = await User.find({ _id: id });
+    const singleUser = await User.find({ authID: authID }).populate('channels');
     return singleUser;
   } catch (err) {
     return err;
   }
 };
 
-export const addUser = async (username, password) => {
+export const addUser = async (authID, username, password, email) => {
   try {
+    const db = connectToDatabase();
     let hash = await bcrypt.hash(password, 10);
-    let newUser = await new User({ username, password: hash });
+
+    let newUser = await new User({
+      authID,
+      username,
+      password: hash,
+      email,
+    });
+
     await newUser.save();
     return newUser;
   } catch (err) {
-    console.log(err);
     return { err: err };
   }
 };

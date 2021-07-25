@@ -11,10 +11,6 @@ import { BiImage } from 'react-icons/bi';
 export const ImageButton = ({ open, setOpen, url }) => {
   const editor = useSlateStatic();
 
-  const displayImageOptionsModal = (e) => {
-    e.preventDefault();
-    setOpen(true);
-  };
   // event.preventDefault()
   // const url = window.prompt('Enter the URL of the image:')
   // if (url && !isImageUrl(url)) {
@@ -22,12 +18,12 @@ export const ImageButton = ({ open, setOpen, url }) => {
   //   return
   // }
   // insertImage(editor, url)
-  let OpenClass = open ? 'block' : 'hidden';
+
   return (
     <>
       <button
         className="ml-4 outline-none text-2xl"
-        onMouseDown={displayImageOptionsModal}
+        onClick={() => setOpen(true)}
       >
         <BiImage />
       </button>
