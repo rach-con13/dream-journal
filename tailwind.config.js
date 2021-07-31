@@ -2,10 +2,12 @@ module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
-  theme: {
-    fontFamily: {
-      sans: ['Work Sans'],
+  variants: {
+    extend: {
+      margin: ['first'],
     },
+  },
+  theme: {
     extend: {
       keyframes: {
         fadeIn: {

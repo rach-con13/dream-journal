@@ -1,6 +1,7 @@
 import { Editor, Transforms } from 'slate';
 import PropTypes from 'prop-types';
-const BlockButton = ({ editor, icon, format, hasItems, onClick }) => {
+import styles from './blockButton.module.css';
+const BlockButton = ({ editor, icon, format }) => {
   const renderBlock = () => {
     const [match] = Editor.nodes(editor, {
       match: (n) => n.type === format,
@@ -18,9 +19,6 @@ const BlockButton = ({ editor, icon, format, hasItems, onClick }) => {
       onClick={(e) => {
         e.preventDefault();
         renderBlock();
-        if (hasItems) {
-          onClick();
-        }
       }}
     >
       {icon}
