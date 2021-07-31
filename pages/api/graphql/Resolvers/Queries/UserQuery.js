@@ -1,3 +1,4 @@
+import User from '../../../Models/user';
 import connectToDatabase from '../../../mongo.config';
 import { getUsers, getUser } from '../../Functions/userFunctions';
 
@@ -8,9 +9,12 @@ const UserQuery = {
   },
   user: async (_, args) => {
     const db = connectToDatabase();
-    let getUserByID = await getUser(args.authID);
-    let singleUser = await getUserByID[0];
-    console.log(getUserByID);
+    let singleUser = await User.findOne({
+      authID: args.authID,
+    }).populate('channels');
+
+    console.log(singleUser);
+
     return singleUser;
   },
 };

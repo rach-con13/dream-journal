@@ -12,7 +12,7 @@ export const getUsers = async () => {
 
 export const getUser = async (authID) => {
   try {
-    const singleUser = await User.find({ authID: authID }).populate('channels');
+    const singleUser = await User.findOne({ authID: authID });
     return singleUser;
   } catch (err) {
     return err;

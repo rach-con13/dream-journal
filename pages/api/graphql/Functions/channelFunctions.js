@@ -34,6 +34,7 @@ export const addChannel = async (authID, title) => {
 
     let currentUser = await User.findOne({ authID: authID });
     currentUser.channels.push(newChannel._id);
+    console.log(currentUser);
     currentUser.save();
 
     return newChannel;

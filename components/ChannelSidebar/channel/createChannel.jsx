@@ -22,6 +22,7 @@ export default function CreateChannel(props) {
   const getCurrentUser = () => {
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
         createChannel({
           variables: {
             authID: user.uid,

@@ -1,38 +1,38 @@
-import { useSlateStatic } from "slate-react";
-import {useState} from "react";
-import PropTypes from "prop-types";
-import { insertImage, isImageUrl } from "../../../components/editor/plugins/withImage"
+import { useSlateStatic } from 'slate-react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-export const ImageButton = ({open,setOpen}) => {
-    const editor = useSlateStatic();
- 
+import {
+  insertImage,
+  isImageUrl,
+} from '../../../components/editor/plugins/withImage';
+import { BiImage } from 'react-icons/bi';
 
-    const displayImageOptionsModal = (e) => {
-        e.preventDefault();
-        setOpen(true);
-        
-    }
-    // event.preventDefault()
-    // const url = window.prompt('Enter the URL of the image:')
-    // if (url && !isImageUrl(url)) {
-    //   alert('URL is not an image')
-    //   return
-    // }
-    // insertImage(editor, url)
-    let OpenClass = open ? 'block': 'hidden';
-    return (
-        <>
-     
+export const ImageButton = ({ open, setOpen, url }) => {
+  const editor = useSlateStatic();
+
+  // event.preventDefault()
+  // const url = window.prompt('Enter the URL of the image:')
+  // if (url && !isImageUrl(url)) {
+  //   alert('URL is not an image')
+  //   return
+  // }
+  // insertImage(editor, url)
+
+  return (
+    <>
       <button
-        onMouseDown={displayImageOptionsModal}
+        className="ml-4 outline-none text-2xl"
+        onClick={() => setOpen(true)}
       >
-        <p>Image</p>
+        <BiImage />
       </button>
-      </>
-    )
-  }
+    </>
+  );
+};
 
-  ImageButton.propTypes = {
-      open:PropTypes.bool,
-      setOpen:PropTypes.func
-  }
+ImageButton.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+  url: PropTypes.string,
+};

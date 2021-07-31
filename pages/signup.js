@@ -8,7 +8,7 @@ import { SIGN_UP } from '../lib/apolloClient/Functions/user';
 import Firebase from '../lib/firebase/firebase.config';
 export default function SignUp(props) {
   const { register, handleSubmit } = useForm();
-  const [registerUser, { data }] = useMutation(SIGN_UP);
+  const [registerUser, { error, data }] = useMutation(SIGN_UP);
   const [authID, setAuthID] = useState(null);
   const handleRegistration = async (data) => {
     Firebase.auth()
@@ -16,20 +16,24 @@ export default function SignUp(props) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+
+        let variables = {
+          authID: user.uid,
+          username: data.username,
+          password: data.password,
+          email: data.email,
+        };
         registerUser({
-          variables: {
-            authID: user.uid,
-            username: data.username,
-            password: data.password,
-            email: data.email,
-          },
+          variables,
         });
+        console.log({error,data})
 
         // ...
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log({ errorCode, errorMessage });
         // ..
       });
   };
