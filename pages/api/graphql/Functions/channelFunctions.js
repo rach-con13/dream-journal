@@ -30,15 +30,17 @@ export const addChannel = async (authID, title) => {
   try {
     const db = connectToDatabase();
     const newChannel = new Channel({ title, pinned: false });
+    console.log(newChannel);
     newChannel.save();
 
     let currentUser = await User.findOne({ authID: authID });
     currentUser.channels.push(newChannel._id);
-    console.log(currentUser);
+    
     currentUser.save();
 
     return newChannel;
   } catch (err) {
+   console.log(err);
     return { err: err };
   }
 };

@@ -1,10 +1,11 @@
+import mongoose from 'mongoose';
 import Channel from '../../../Models/channel';
 import connectToDatabase from '../../../mongo.config';
 import { getChannel, getChannels } from '../../Functions/channelFunctions';
 
 const ChannelQuery = {
   channels: async (_, args) => {
-    const db = connectToDatabase();
+
     try {
       const allChannels = await getChannels();
       return allChannels;
@@ -13,9 +14,15 @@ const ChannelQuery = {
     }
   },
   channel: async (_, args) => {
+    let error = {}
     try {
-      const db = connectToDatabase();
 
+
+      if(!mongoose.Types.ObjectId.isValid(args.id)) {
+        error = {message:"No User with this id exists"}
+        return error;
+      }
+      
       const singleChannel = await Channel.findOne({ _id: args.id }).populate(
         'entries'
       );
@@ -23,6 +30,7 @@ const ChannelQuery = {
 
       return singleChannel;
     } catch (err) {
+   
       return err;
     }
   },

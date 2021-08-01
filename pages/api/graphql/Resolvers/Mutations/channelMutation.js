@@ -5,14 +5,23 @@ import { addChannel, updateChannel } from '../../Functions/channelFunctions';
 
 const ChannelMutation = {
   createChannel: async (root, { authID, title }) => {
-    let db = connectToDatabase();
+    let error = {};
     try {
+      if (!title) {
+        error = { message: 'Channel must have a title' };
+        return error;
+      }
+      if(!authID) {
+        error = {message:'User cannot be found, cannot create channel'};
+        return error;
+      }
       let newChannel = await addChannel(authID, title);
-      console.log(newChannel);
+
       // add channel to current user
 
       return newChannel;
     } catch (err) {
+     
       return { err: err };
     }
   },

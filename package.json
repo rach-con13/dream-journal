@@ -17,6 +17,7 @@
     "cookies": "^0.8.0",
     "formik": "^2.2.9",
     "graphql": "^15.5.1",
+    "graphql-constraint-directive": "^2.1.1",
     "image-extensions": "^1.1.0",
     "is-hotkey": "^0.2.0",
     "is-url": "^1.2.4",

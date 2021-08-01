@@ -9,6 +9,18 @@ import Queries from './Resolvers/query';
 import Mutation from './Resolvers/mutation';
 
 const resolvers = {
+  ChannelResult:{
+    __resolveType(obj) {
+      if(obj.title) return 'Channel'
+      return 'Error'
+    }
+  },
+  UserResult:{
+    __resolveType(obj) {
+      if(obj.message) return 'Error'
+      return 'User'
+    }
+  },
   Query: {
     ...Queries,
   },

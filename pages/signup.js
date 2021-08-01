@@ -6,36 +6,56 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../lib/apolloClient/Functions/user';
 import Firebase from '../lib/firebase/firebase.config';
+import UseError from '../hooks/useError';
+import Error from "../components/error/error";
 export default function SignUp(props) {
   const { register, handleSubmit } = useForm();
-  const [registerUser, { error, data }] = useMutation(SIGN_UP);
+  const [registerUser, { error, data }] = useMutation(SIGN_UP,{errorPolicy:"all"});
   const [authID, setAuthID] = useState(null);
-  const handleRegistration = async (data) => {
-    Firebase.auth()
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
+  const {message,setErrorMessage} = UseError();
+  const handleRegistration = async ({email,password,username}) => {
+    try {
+    let variables = {
+      authID:4,
+      username:username,
+      password:password,
+      email:email
+    }
+    registerUser({
+      variables
+    })
+    
+  } catch(err) {
 
-        let variables = {
-          authID: user.uid,
-          username: data.username,
-          password: data.password,
-          email: data.email,
-        };
-        registerUser({
-          variables,
-        });
-        console.log({error,data})
+    setErrorMessage(err);
 
-        // ...
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log({ errorCode, errorMessage });
-        // ..
-      });
+  }
+    // Firebase.auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+
+    //     let variables = {
+    //       authID: user.uid,
+    //       username: username,
+    //       password: password,
+    //       email: email,
+    //     };
+    //     registerUser({
+    //       variables,
+    //     });
+    //     console.log({data})
+
+    //     // ...
+    //   })
+    //   .catch((error) => {
+   
+    //     var errorMessage = error.message;
+
+    //     setErrorMessage(errorMessage)
+    //     // ..
+    //   });
   };
 
   return (
@@ -77,6 +97,9 @@ export default function SignUp(props) {
             Sign Up
           </button>
         </form>
+        {message ? 
+        <Error message={message} />
+: null}
       </div>
     </div>
   );

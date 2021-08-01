@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const channel = new Schema({
   title: {
     type: String,
-    required: true,
+    required:true
   },
   pinned: { type: Boolean, default: false },
   entries: [{ type: Schema.Types.ObjectId, ref: 'Entry' }],
