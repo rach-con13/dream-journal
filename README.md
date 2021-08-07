@@ -1,29 +1,62 @@
-# Next.js + Tailwind CSS Example
+# Journal Application
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2.1) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+## Project Description
+This project focused on implementing simple CRUD functionalities using the Apollo GraphQL library with MongoDB for the database and Next.js for the frontend. 
+One of my motivations for developing this project was to gain a better understanding of the Apollo and GraphQL Ecosystem and build a product that I've used often in my daily life. 
 
-## Preview
+## Features
+This project has the following features implemented thus fur:
+ - User Authentication with Firebase 
+ - CRUD functionality for creating diary channels and creating channel entries.
+ - Custom Text Editor made with Slate.js that provides simple features ( ex bold text, italic, quote blocks, code blocks ). 
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+### Future Features
+- Add more features to Text Editor including hyperlinks, mentions etc. 
+- Add Dictionary 
+- Be able to invite collaborators to channel and create roles
+- Be able to save or download a written entry in google drive or as a pdf,txt file.
+- Be able to share entry with a shareable link
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Current Challenges
+Some of the challenges I've currently trying to resolve include :
+- Large Apollo Payloads causing significant delays in loading time
+- Update Tailwind styling for cleaner code keeping. 
 
 ## How to use
+In order to use this repo, follow the following steps below:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+**1. Clone the Repo**
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+
+``` git clone  https://github.com/rach-con13/dream-journal.git ``` 
+
+
+**2. Install Dependencies**
+
+
+ ``` npm i ```
+
+
+**3. Create .env file in the root of the project directory and add the following information**
+
+ Visit [MongoDB](https://account.mongodb.com/account/login) and sign in using your account to create a project. Choose **Connect to Application** under the connection methods options and copy the URI.
+```
+MONGODB_URI = "place your mongodb uri here"
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+**4. Recommended to add the following extensions**
+
+ Please note that this project was developed using VSCode and the extensions listed below can be found in the VSCode extensions store. If you are using an alternative
+ editor, please consult their extension stores to see if they have similar or the same extensions. The following recommended extensions include :
+ - Prettier
+ - Apollo
+ - Tailwind CSS IntelliSense
+ - MongoDB for VSCode ( Mongo Compass is also a good alternative )
+  
+
+
+
+
